@@ -40,18 +40,18 @@ export const authSlice = createSlice({
       state.isAuthenticated = !state.isAuthenticated;
     },
   },
-  extraReducers: {
-    [login.pending]: (state) => {
-      state.loading = true
-    },
-    [login.fulfilled]: (state, { payload }) => {
-      state.loading = false
-      state.entities = payload
-    },
-    [login.rejected]: (state) => {
-      state.loading = false
-    },
-  },
+  // extraReducers: {
+  //   [login.pending]: (state) => {
+  //     state.loading = true
+  //   },
+  //   [login.fulfilled]: (state, { payload }) => {
+  //     state.loading = false
+  //     state.entities = payload
+  //   },
+  //   [login.rejected]: (state) => {
+  //     state.loading = false
+  //   },
+  // },
 });
 
 export const { checkAuthenticated } = authSlice.actions;
