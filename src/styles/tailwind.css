@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .sidebar-icon {
+    @apply relative flex items-center justify-center h-16 w-16 my-2 mx-auto shadow-lg hover:rounded-xl transition-all 
+    duration-300 ease-linear cursor-pointer rounded-[4rem] hover:bg-gradient-to-r hover:text-white select-none
+    text-[#ff7e5f] bg-white from-[#ff7e5f] to-[#feb47b]
+    dark:text-indigo-500 dark:bg-gray-800 dark:from-blue-400 dark:to-indigo-600 dark:hover:text-white;
+  }
+
+  .sidebar-icon:hover ~ .hovering {
+    @apply block;
+  }
+
+  .sidebar-tooltip {
+    @apply absolute w-auto p-3 m-3 min-w-max left-20 rounded-md dark:text-white bg-gray-50 text-[#ff7e5f] shadow-md 
+    select-none dark:bg-gray-900 text-sm font-bold transition-all duration-100 scale-0 origin-left;
+  }
+
+  .separator {
+    @apply w-12 bg-[#feb47b] dark:bg-gray-600 h-0.5 mx-auto rounded-sm my-0.5;
+  }
+
+  .main {
+    @apply ml-24 h-screen w-full bg-gray-200 dark:bg-gray-700 transition duration-1000;
+  }
+}
+
+/* body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+} */
