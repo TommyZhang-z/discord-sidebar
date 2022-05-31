@@ -1,19 +1,16 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const login = createAsyncThunk("auth/login", async (email, password) => {
+export const login = createAsyncThunk("auth/login", async (email:string) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
     },
   };
+  const password = "password";
   const body = JSON.stringify({ email, password });
-  try {
-    const res = await axios.post("/auth/jwt/create/", body, config);
-    return res.data;
-  } catch (err: any) {
-    return err.message;
-  }
+  const res = await axios.post("/api/auth/jwt/create/", body, config);
+  return res.data;
 });
 
 interface AuthState {
@@ -40,18 +37,16 @@ export const authSlice = createSlice({
       state.isAuthenticated = !state.isAuthenticated;
     },
   },
-  // extraReducers: {
-  //   [login.pending]: (state) => {
-  //     state.loading = true
-  //   },
-  //   [login.fulfilled]: (state, { payload }) => {
-  //     state.loading = false
-  //     state.entities = payload
-  //   },
-  //   [login.rejected]: (state) => {
-  //     state.loading = false
-  //   },
-  // },
+  extraReducers(builder) {
+    builder.addCase(login.fulfilled, (state, action) => {
+      const { payload } = action;
+      localStorage.setItem("access", payload.access);
+      localStorage.setItem("refresh", payload.refresh);
+      state.isAuthenticated = true;
+      state.access = payload.access;
+      state.refresh = payload.refresh;
+    });
+  },
 });
 
 export const { checkAuthenticated } = authSlice.actions;
